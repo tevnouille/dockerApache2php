@@ -85,7 +85,7 @@ RUN echo '#!/bin/bash \n\
 /etc/init.d/mysql start \n\
 /bin/sh -c "munin-node-configure --remove --shell | sh; exec /usr/sbin/munin-node --config /etc/munin/munin-node.conf" & \n\
 /usr/sbin/apache2ctl -D FOREGROUND &\n\
-while true; do sleep 600; done \n'\
+while true; do sleep 500; done \n'\
 >> /root/startup.sh
 
 CMD ["/bin/bash", "/root/startup.sh"]
