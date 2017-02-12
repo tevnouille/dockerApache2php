@@ -49,6 +49,10 @@ RUN \
           ' /etc/munin/munin-node.conf && \
   /bin/echo -e "cidr_allow 192.168.0.0/16\ncidr_allow 172.16.0.0/12\ncidr_allow 10.0.0.0/8" >> /etc/munin/munin-node.conf
 
+RUN apt install incron
+
+RUN rm /etc/incron.allow
+
 RUN apt-get autoremove && \
         apt-get clean && \
         rm -rf /var/lib/apt/lists/* && \
@@ -93,6 +97,7 @@ RUN echo '#!/bin/bash \n\
 /etc/init.d/mysql start \n\
 service rsyslog start \n\
 service postfix start \n\
+service incron start \n\
 /bin/sh -c "munin-node-configure --remove --shell | sh; exec /usr/sbin/munin-node --config /etc/munin/munin-node.conf" & \n\
 /usr/sbin/apache2ctl -D FOREGROUND &\n\
 while true; do sleep 500; done \n'\
