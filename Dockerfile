@@ -49,7 +49,9 @@ RUN \
           ' /etc/munin/munin-node.conf && \
   /bin/echo -e "cidr_allow 192.168.0.0/16\ncidr_allow 172.16.0.0/12\ncidr_allow 10.0.0.0/8" >> /etc/munin/munin-node.conf
 
-RUN apt install incron
+RUN apt install -y incron nmap nload
+
+RUN apt dist-upgrade -y
 
 RUN rm /etc/incron.allow
 
